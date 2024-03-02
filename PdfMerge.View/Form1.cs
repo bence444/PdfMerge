@@ -105,15 +105,18 @@ namespace PdfMerge.View
         {
             try
             {
-                var start = DateTime.Now;
+                if (_files.Count > 0 && !string.IsNullOrEmpty(_outputPath))
+                {
+                    var start = DateTime.Now;
 
-                Merger merger = new();
-                merger.Execute(_files.ToArray(), _outputPath);
+                    Merger merger = new();
+                    merger.Execute(_files.ToArray(), _outputPath);
 
-                var end = DateTime.Now;
-                var elapsed = (end - start).TotalSeconds;
+                    var end = DateTime.Now;
+                    var elapsed = (end - start).TotalSeconds;
 
-                MessageBox.Show($"Mentve! ({Math.Round(elapsed, 2)}s)");
+                    MessageBox.Show($"Mentve! ({Math.Round(elapsed, 2)}s)");
+                }
             }
             catch (Exception ex)
             {
